@@ -1,0 +1,31 @@
+{
+    "files.associations": {
+        "iomanip": "cpp",
+        "xiosbase": "cpp",
+        "string": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "stack": "cpp",
+        "type_traits": "cpp",
+        "valarray": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xstring": "cpp",
+        "xtree": "cpp",
+        "xutility": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "algorithm": "cpp",
+        "editor.fontSize": 18,
+        "terminal.integrated.shellArgs.windows": [
+            "/K chcp 65001 >nul"
+        ],
+        "*.tcc": "cpp"
+    }
+}
