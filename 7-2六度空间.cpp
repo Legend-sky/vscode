@@ -1,64 +1,72 @@
 /*
  * @Author: Whx
- * @Date: 2020-12-10 19:28:04
- * @LastEditTime: 2020-12-10 22:17:51
+ * @Date: 2020-12-22 20:44:28
+ * @LastEditTime: 2020-12-22 22:21:56
  */
 #include <cstdio>
-#include <algorithm>
-#include <cstring>
 #include <queue>
-#include <vector>
+#include <cstring>
+#include <iostream>
 using namespace std;
-vector<int> G[1005];
-int vis[1005];
-int n, m, cnt;
-void bfs(int k)
+int n, m, cnt, G[1005][1005], vis[1005];
+struct Node
 {
-    queue<int> q;
-    q.push(k);
-    vis[k] = 1;
-    cnt++;
-    for (int i = 0; i < 6; i++)
+    int n, d;
+};
+void BFS(int n)
+{
+    queue<Node> q;
+    Node no;
+    no.n = n;
+    no.d = 0;
+    vis[n] = 1;
+    q.push(no);
+    while (!q.empty())
     {
-        vector<int> v;
-        while (!q.empty())
+        Node tmp = q.front();
+        q.pop();
+        cnt++;
+        if (tmp.d == 7)
+            continue;
+        for (int i = 0; i < n; i++)
         {
-            int tmp = q.front();
-            q.pop();
-            v.push_back(tmp);
-        }
-        for (int i = 0; i < v.size(); i++)
-        {
-            int p = v[i];
-            for (int j = 0; j < G[p].size(); j++)
-            {
-                if (vis[G[p][j]] == 0)
-                {
-                    vis[G[p][j]] = 1;
-                    cnt++;
-                    q.push(G[p][j]);
-                }
-            }
+            if (vis[i] == 1)
+                continue;
+            if (G[tmp.n][i] == 0)
+                continue;
+            Node node;
+            node.n = i;
+            node.d = tmp.d + 1;
+            vis[i] = 1;
+            q.push(node);
         }
     }
 }
 int main()
 {
-    scanf("%d%d", &n, &m);
-    for (int i = 0; i < m; i++) //邻接表存储
+    int t;
+    scanf("%d", &t);
+    while (t--)
     {
-        int x, y;
-        scanf("%d%d", &x, &y);
-        G[x].push_back(y);
-        G[y].push_back(x);
-    }
-    for (int i = 1; i <= n; i++)
-    {
-        cnt = 0;
+        memset(G, 0, sizeof(G));
         memset(vis, 0, sizeof(vis));
-        bfs(i);
-        double res = cnt * 1.0 / n;
-        printf("%d: %.2f%%\n", i, res * 100);
+        scanf("%d%d", &n, &m);
+        for (int i = 0; i < m; i++)
+        {
+            int a, b;
+            scanf("%d%d", &a, &b);
+            G[a][b] = G[b][a] = 1;
+        }
+        for (int i = 0; i < n; i++)
+        {
+            memset(vis, 0, sizeof(vis));
+            cnt = 0;
+            BFS(i);
+        }
+        if (cnt == n)
+            printf("Yes\n");
+        else
+            printf("No\n");
     }
     return 0;
 }
