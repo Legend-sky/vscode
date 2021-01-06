@@ -1,7 +1,7 @@
 /*
  * @Author: Whx
  * @Date: 2021-01-01 16:41:32
- * @LastEditTime: 2021-01-01 17:15:40
+ * @LastEditTime: 2021-01-01 17:30:23
  */
 #include <cstdio>
 #include <algorithm>
@@ -17,15 +17,15 @@ const int N = 2e5 + 7;
 int k, s[105];
 int m, l, h;
 int sg[10005];
-bool vis[10005];
-int GetSG(int x)
+int GetSG(int n)
 {
+    bool vis[105];
     memset(vis, 0, sizeof(vis));
-    for (int j = 0; j < k && s[j] <= x; j++)
+    for (int j = 0; j < k && s[j] <= n; j++)
     {
-        if (sg[x - s[j]] == -1)
-            sg[x - s[j]] = GetSG(x - s[j]);
-        vis[sg[x - s[j]]] = 1;
+        if (sg[n - s[j]] == -1)
+            sg[n - s[j]] = GetSG(n - s[j]);
+        vis[sg[n - s[j]]] = 1;
     }
     for (int j = 0;; j++)
     {
@@ -37,7 +37,7 @@ int GetSG(int x)
 }
 int main()
 {
-    while (scanf("%d", &k) != EOF, k)
+    while (scanf("%d", &k), k)
     {
         for (int i = 0; i < k; i++)
         {
@@ -47,16 +47,16 @@ int main()
         scanf("%d", &m);
         memset(sg, -1, sizeof(sg));
         sg[0] = 0;
-        for (int i = 0; i < m; i++)
+        while (m--)
         {
             scanf("%d", &l);
             int res = 0;
-            for (int j = 0; j < l; j++)
+            while (l--)
             {
                 scanf("%d", &h);
                 if (sg[h] == -1)
                     sg[h] = GetSG(h);
-                res = res ^ sg[h];
+                res ^= sg[h];
             }
             if (res == 0)
                 printf("L");
