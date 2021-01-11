@@ -1,19 +1,26 @@
-/*¶ş·ÖÍ¼×î´ó¶ÀÁ¢¼¯=½ÚµãÊı-×î´óÆ¥ÅäÊı£¬ÕâÌâÖĞÖ»ÓĞÒ»¸ö¼¯ºÏ£¬ËùÒÔ×î´óÆ¥ÅäÊıÓĞÖØ¸´£¬Òª³ıÒÔ2*/
-#include<iostream>
-#include<cstring>
-#include<algorithm>
+/*
+ * @Author: Whx
+ * @Date: 2020-12-16 19:26:05
+ * @LastEditTime: 2021-01-06 21:30:19
+ */
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
 using namespace std;
-const int N = 1000;
-int map[N][N], vis[N], line[N];
+int map[501][501];
+int vis[501];
+int match[501];
 int n;
-int find(int u)
+int find(int x) //åŒˆç‰™åˆ©ç®—æ³•
 {
-	int i;
-	for (i = 0; i < n; i++) {
-		if (!vis[i] && map[u][i] == 1) {
+	for (int i = 0; i < n; i++)
+	{
+		if (vis[i] == 0 && map[x][i] == 1)
+		{
 			vis[i] = 1;
-			if (line[i] == -1 || find(line[i])) {
-				line[i] = u;
+			if (match[i] == -1 || find(match[i]))
+			{
+				match[i] = x;
 				return 1;
 			}
 		}
@@ -22,24 +29,27 @@ int find(int u)
 }
 int main()
 {
-	int i, j, k, m, r;
-	char c, s, q;
-	while (cin >> n) {
+	while (scanf("%d", &n) != EOF)
+	{
 		memset(map, 0, sizeof(map));
-		memset(line, -1, sizeof(line));
-		for (i = 0; i < n; i++) {
-			cin >> m >> c >> s >> k >> q;
-			for (j = 0; j < k; j++) {
-				cin >> r;
-				map[m][r] = 1;
+		memset(match, -1, sizeof(match));
+		for (int i = 0; i < n; i++)
+		{
+			int x, y, q;
+			scanf("%d: (%d)", &x, &q);
+			for (int j = 0; j < q; j++)
+			{
+				scanf("%d", &y);
+				map[x][y] = 1;
 			}
 		}
 		int sum = 0;
-		for (i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++)
+		{
 			memset(vis, 0, sizeof(vis));
-			if (find(i)) sum++;
+			if (find(i))
+				sum++;
 		}
-		cout << n - sum / 2 << endl;
+		printf("%d\n", n - sum / 2); //èƒ½åŒ¹é…çš„äººæ•°ä¸­å»æ‰ä¸€åŠï¼Œå¦å¤–ä¸€åŠä¹ŸåŒ¹é…ä¸äº†
 	}
-	return 0;
 }
