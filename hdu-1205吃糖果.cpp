@@ -1,35 +1,38 @@
-/*Èç¹û×î´ó¶Ñ-´Î´ó¶Ñ<=1£¬ÄÇÃ´ÎÊÌâ¿Ï¶¨ÓÐ½â£º
-ÎÒÃÇ¿ÉÒÔ´Ó×î´óºÍ´Î´óÀïÃæÃ¿´ÎÄÃÒ»¸ö£¬È»ºóµÈËûÃÇºÍµÚÈý´ó¶ÑÏàµÈµÄÊ±ºò
-£¬Ã¿´Î´ÓÈý¶ÑÀïÃæ¸÷ÄÃÒ»¸ö£¬µÈËûÃÇºÍµÚËÄ´ó¶ÑÏàµÈµÄÊ±ºò
-£¬Ã¿´Î´ÓËÄ¶ÑÀïÃæ¸÷ÄÃÒ»¸ö£¬ÕâÑùÒ»Ö±ÄÃÍêËùÓÐ¶Ñ¡£
-ÎÊÌâ±ä³ÉÁËÄÜ²»ÄÜÊ¹µÃ×î´ó¶Ñ-´Î´ó¶Ñ<=1£¬ËùÒÔÖ®Ç°ÎÒÃÇ»á´Ó´Î´ó¶ÑÖ®ÍâµÄÄÇÐ©¶ÑÀïÃæÈ¡£¬
-À´ÈÃ×î´ó¶Ñ¼õÉÙ£¬Èç¹ûÄÜ¼õµ½£º×î´ó¶Ñ-´Î´ó¶Ñ<=1£¬ÄÇÃ´Ô­ÎÊÌâÓÐ½â¡£
-ÄÜ·ñ¼õµ½Òª¿´£º
-sum - max - max2 >= max - max2 - 1
-ÊÇ·ñ³ÉÁ¢£¬ÆäÖÐsumÎª×ÜºÍ£¬maxÎª×î´ó¶Ñ£¬max2Îª´Î´ó¡£
-ÕûÀíµÃ£º
-2 * sum - max >= max - 1
+/*
+ * @Author: Whx
+ * @Date: 2020-12-16 19:26:05
+ * @LastEditTime: 2021-01-13 10:33:43
+ */
+/*
+åªè¦é™¤äº†æ•°ç›®æœ€å¤šçš„ç³–æžœä»¥å¤–çš„å…¶ä»–æ‰€æœ‰ç³–æžœçš„æ•°ç›®ä¹‹å’ŒåŠ 1ï¼ˆå°å¿ƒè¿™é‡Œè¦ç”¨int64ï¼‰ï¼Œ
+å¤§äºŽç­‰äºŽæ•°ç›®æœ€å¤šçš„ç³–æžœæ•°ï¼Œå°±èƒ½åƒå®Œï¼Œå¦åˆ™ä¸èƒ½ã€‚
+
+åŽŸç†ï¼šO X O M O,ä¸‰ç§ç³–æžœï¼Œ
+å‡è®¾å…¶ä»–ç³–æžœæ€»æ•°ä¸ºn
+ç”¨æœ€å¤šçš„ç³–æžœå¯¹å…¶ä»–ç³–æžœè¿›è¡Œæ’ç©ºæœ€å¤šéœ€è¦n+1ä¸ª
 */
-#include<cstdio>
-#include<iostream>
-#include<algorithm>
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 int main()
 {
-	int t, n, k, maxn;
+	int t, n, k, max_n;
 	long long sum;
 	cin >> t;
 	while (scanf("%d", &n) != EOF)
 	{
-		sum = maxn = 0;
+		sum = max_n = 0;
 		for (int i = 0; i < n; i++)
 		{
 			scanf("%d", &k);
 			sum += k;
-			maxn = max(maxn, k);
+			max_n = max(max_n, k);
 		}
-		if (sum - maxn + 1 >= maxn) cout << "Yes" << endl;
-		else cout << "No" << endl;
+		if (sum - max_n + 1 >= max_n)
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
 	}
 	return 0;
 }

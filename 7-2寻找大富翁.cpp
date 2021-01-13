@@ -1,7 +1,7 @@
 /*
  * @Author: Whx
  * @Date: 2021-01-09 21:01:23
- * @LastEditTime: 2021-01-09 21:29:39
+ * @LastEditTime: 2021-01-11 16:59:18
  */
 #include <cstdio>
 #include <iostream>
@@ -16,7 +16,7 @@ const int MOD = 998244353;
 const int INF = 0x3f3f3f3f;
 const int N = 2e5 + 7;
 
-void PercDown(int a[], int p, int n) //最小堆
+void PerDown(int a[], int p, int n) //最小堆
 {
     int parent, child;
     int x;
@@ -44,7 +44,7 @@ void HeapSort(int a[], int n)
     for (int i = n - 1; i > 0; i--)
     {
         swap(a[0], a[i]);
-        PercDown(a, 0, i);
+        PerDown(a, 0, i);
     }
 }
 int main()
@@ -62,7 +62,7 @@ int main()
     }
     for (int i = m / 2 - 1; i >= 0; i--)
     {
-        PercDown(a, i, m);
+        PerDown(a, i, m);
     }
     for (int i = m; i < n; i++)
     {
@@ -70,7 +70,7 @@ int main()
         if (tmp > a[0])
         {
             a[0] = tmp;
-            PercDown(a, 0, m);
+            PerDown(a, 0, m);
         }
     }
     HeapSort(a, m);
