@@ -1,7 +1,7 @@
 /*
  * @Author: Whx
  * @Date: 2020-12-14 19:35:30
- * @LastEditTime: 2020-12-14 19:43:34
+ * @LastEditTime: 2021-01-13 16:27:04
  */
 #include <cstdio>
 #include <algorithm>
@@ -49,4 +49,5 @@ int main()
         }
         printf("%d\n", res);
     }
+    return 0;
 }

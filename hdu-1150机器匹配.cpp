@@ -1,24 +1,24 @@
 /*
  * @Author: Whx
  * @Date: 2020-08-08 11:19:27
- * @LastEditTime: 2020-12-18 17:22:48
+ * @LastEditTime: 2021-01-13 17:37:44
  */
 #include <iostream>
 #include <cstring>
 #include <algorithm>
 using namespace std;
-bool vis[110], map[110][110]; //map��ʾ���й�ϵ
-int line[110];				  //��ʾ������֮������߹�ϵ�����ƥ��Ĺ�ϵ
+bool vis[110], map[110][110];
+int line[110];
 int n, m, k;
 bool dfs(int u)
 {
 	for (int i = 1; i < m; i++)
-	{ //ɨ��b��a�Ƿ��й�ϵ
+	{
 		if (!vis[i] && map[u][i])
-		{ //�й�ϵ��û���ݷù�
+		{
 			vis[i] = true;
 			if (line[i] == -1 || dfs(line[i]))
-			{ //����b��û��ǣ�߻�������������ǣ�ߵĶ���
+			{
 				line[i] = u;
 				return true;
 			}
@@ -38,8 +38,8 @@ int main()
 			int a, b, c;
 			cin >> a >> b >> c;
 			if (b == 0 || c == 0)
-				continue;	  //����A��B�տ�ʼ����ģʽ0�������ģʽ0�Ͳ����л�
-			map[b][c] = true; //��ǹ�ϵ
+				continue;
+			map[b][c] = true;
 		}
 		int res = 0;
 		for (int i = 1; i < n; i++)
@@ -53,25 +53,24 @@ int main()
 	return 0;
 }
 
-//�ϿεĴ���
 /*
 #include <cstdio>
 #include <algorithm>
 #include <cstring>
 using namespace std;
 const int MaxN = 510;
-int uN, vN;		   //uN��ƥ����ߵĶ�������vN��ƥ���ұߵĶ�����
-int g[MaxN][MaxN]; //�ڽӾ���
+int uN, vN;
+int g[MaxN][MaxN];
 int linker[MaxN];
 bool used[MaxN];
 bool dfs(int u)
 {
-	for (int v = 0; v < vN; v++) //��0��ʼ�ʹ�1��ʼ����Ӱ����
+	for (int v = 0; v < vN; v++)
 	{
 		if (g[u][v] && !used[v])
 		{
 			used[v] = 1;
-			if (linker[v] == -1 || dfs(linker[v])) //linker[v]Ů���������ѻ������ҵ�������ƥ��
+			if (linker[v] == -1 || dfs(linker[v]))
 			{
 				linker[v] = u;
 				return 1;
@@ -86,7 +85,7 @@ int solve()
 	memset(linker, -1, sizeof(linker));
 	for (int u = 0; u < uN; u++)
 	{
-		memset(used, 0, sizeof(used)); //ÿ��ƥ�����һ�Զ���ʼ�����������Ҫ��
+		memset(used, 0, sizeof(used));
 		if (dfs(u))
 			res++;
 	}
